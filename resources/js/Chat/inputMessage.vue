@@ -31,8 +31,11 @@ export default {
             }
 
             axios.post('/api/chat/room/'+this.room.id+'/message',{
+                user :localStorage.getItem('user_id'),
                 message:this.message
-            })
+                },
+                {headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`}}
+            )
             .then(Response=> {
                 if(Response.status == 201) {
                     this.message = '';

@@ -31,7 +31,9 @@ export default {
     },
     methods : {
         getRooms() {
-            axios.get('/api/chat/rooms')
+            axios.get('/api/chat/rooms',
+            {headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`}}
+            )
             .then(response =>{
                 
                 this.chatRooms  = response.data;
@@ -46,7 +48,8 @@ export default {
             this.getMessages();
         },
         getMessages() {
-            axios.get('/api/chat/room/' + this.currentRoom.id + '/messages')
+            axios.get('/api/chat/room/' + this.currentRoom.id + '/messages',
+            {headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`}})
             .then(response => {
                 this.messages = response.data; 
             })

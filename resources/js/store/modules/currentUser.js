@@ -17,6 +17,7 @@ const actions = {
                  //save the token
                  localStorage.setItem('token',response.data.token)
                  localStorage.setItem('user_type',response.data.user.type)
+                 localStorage.setItem('user_id',response.data.user.id)
 
                  window.location.replace('/home')
              }

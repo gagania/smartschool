@@ -23,9 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/user',[UserController::class,'index']);
 Route::get('/student',[UserController::class,'student']);
 Route::get('/teacher',[UserController::class,'teacher']);
-Route::get('/chat/rooms',[ChatController::class,'rooms']);
-Route::get('/chat/room/{roomId}/messages',[ChatController::class,'messages']);
-Route::post('/chat/room/{roomId}/message',[ChatController::class,'newMessage']);
+
+
 Route::prefix('/user')->group( function(){
         Route::post('/store',[UserController::class,'store']);
         Route::put('/{id}',[UserController::class,'update']);
@@ -37,9 +36,11 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     Route::post('/login', [ApiController::class,'login']);
     Route::post('/register',[ApiController::class,'register']);
     Route::post('/logout', [ApiController::class,'logout']);
+    Route::get('/chat/rooms',[ChatController::class,'rooms']);
+    Route::get('/chat/room/{roomId}/messages',[ChatController::class,'messages']);
+    Route::post('/chat/room/{roomId}/message',[ChatController::class,'newMessage']);
 });
 
 Route::middleware(['auth:sanctum','verified'])->get('/chat', function () {
     return view('Chat/container');
 })->name('chat');
-
