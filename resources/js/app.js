@@ -18,7 +18,6 @@ import Chat from './Chat/container';
 library.add(faPlusSquare,faTrash)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-Vue.component('login-form', require('./components/loginForm.vue').default);
 
 const router = new VueRouter({
   mode: 'history',

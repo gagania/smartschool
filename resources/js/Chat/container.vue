@@ -1,14 +1,23 @@
 <template>
     <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Chat</h3>
+      <h3 class="card-title">
+          <chat-room-selection
+              v-if="currentRoom.id"
+              :rooms="chatRooms"
+              :currentRoom="currentRoom"
+              v-on:roomChange="setRoom( $event)">
+          </chat-room-selection>
+      </h3>
 
       <div class="card-tools"></div>
     </div>
     <!-- /.card-header -->
     <div class="card-body table-responsive p-0">
-        <message-container></message-container>
-        <input-message :room="currentRoom"></input-message>
+        <message-container :messages="messages"></message-container>
+        <input-message 
+            :room="currentRoom"
+            v-on:messagesent="getMessages()"></input-message>
     </div>
     <!-- /.card-body -->
   </div>
@@ -16,11 +25,13 @@
 
 <script>
 import inputMessage from '../Chat/inputMessage'
+import ChatRoomSelection from './ChatRoomSelection'
 import MessageContainer from './messageContainer'
 export default {
-  components: { 
-      MessageContainer,
-        inputMessage 
+    components: { 
+        MessageContainer,
+        inputMessage,
+        ChatRoomSelection 
     },
     data : function() {
         return {

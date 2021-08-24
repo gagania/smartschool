@@ -5,11 +5,11 @@
                 v-model="message"
                 @keyup.enter="sendMessage()"
                 placeholder="Say Something...."
-                class="col-span=5 outline-none p-1"
+                class="col-md-11 outline-none p-1"
             />
             <button @click="sendMessage()" 
                 class="place-self-end bg-gray-500 
-                hover:bg-blue-700 p-1 mt-1 rounded text-white">
+                hover:bg-blue-700 p-1 mt-1 rounded">
                 Send
             </button>
         </div>
